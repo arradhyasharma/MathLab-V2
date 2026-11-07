@@ -32,41 +32,108 @@
 
     <main>
 
-        <section class="hero" id="home">
-            <div class="hero-content">
-                <p class="eyebrow">AN INTERACTIVE MATHEMATICS EXPERIENCE</p>
+        
+<section class="hero" id="home">
+    <div class="hero-content">
+        <p class="eyebrow">MATHLAB / EXPERIMENT 001</p>
 
-                <h1>
-                    Mathematics,<br>
-                    <span>made interactive.</span>
-                </h1>
+        <h1>
+            Mathematics is<br>
+            better when<br>
+            you <span>experiment.</span>
+        </h1>
 
-                <p class="hero-description">
-                    Move beyond textbooks. Explore mathematical ideas,
-                    experiment with numbers and discover how mathematics works.
-                </p>
+        <p class="hero-description">
+            A space to explore mathematical ideas,
+            test possibilities and understand the logic
+            behind every result.
+        </p>
 
-                <div class="hero-actions">
-                    <a href="#laboratories" class="button button-primary">
-                        Explore laboratories
-                    </a>
+        <div class="hero-actions">
+            <a href="#laboratories" class="button button-primary">
+                Explore all labs
+            </a>
+        </div>
+    </div>
 
-                    <a href="#featured" class="button button-secondary">
-                        Try an experiment
-                    </a>
-                </div>
-            </div>
+    <div class="plot-workspace">
+        <div class="plot-header">
+            <span>COORDINATE EXPERIMENT</span>
+            <span>01 / 05</span>
+        </div>
 
-            <div class="hero-visual">
-                <!-- Mathematical illustration will go here -->
-                <div class="math-visual-placeholder">
-                    <span>∑</span>
-                    <span>π</span>
-                    <span>√</span>
-                    <span>∞</span>
-                </div>
-            </div>
-        </section>
+        <div class="plot-canvas">
+            <svg id="coordinate-graph"
+                 viewBox="0 0 500 360"
+                 role="img"
+                 aria-label="Cartesian coordinate plane">
+
+                <defs>
+                    <pattern id="graph-grid"
+                             width="20"
+                             height="20"
+                             patternUnits="userSpaceOnUse">
+                        <path d="M 20 0 L 0 0 0 20"
+                              fill="none"
+                              stroke="#DCE3ED"
+                              stroke-width="1"/>
+                    </pattern>
+                </defs>
+
+                <rect width="500" height="360"
+                      fill="url(#graph-grid)"/>
+
+                <line x1="25" y1="180" x2="475" y2="180"
+                      stroke="#64748B" stroke-width="1.5"/>
+
+                <line x1="250" y1="25" x2="250" y2="335"
+                      stroke="#64748B" stroke-width="1.5"/>
+
+                <path d="M 475 180 l -8 -4 v 8 z"
+                      fill="#64748B"/>
+                <path d="M 250 25 l -4 8 h 8 z"
+                      fill="#64748B"/>
+
+                <text x="480" y="168" font-size="12">X</text>
+                <text x="263" y="20" font-size="12">Y</text>
+                <text x="260" y="196" font-size="10">0</text>
+
+                <circle id="plotted-point"
+                        cx="310" cy="140" r="6"
+                        fill="#2563EB"/>
+
+                <text id="point-label"
+                      x="322" y="132"
+                      font-size="13"
+                      fill="#2563EB"
+                      font-weight="bold">(3, 2)</text>
+            </svg>
+        </div>
+
+        <div class="plot-controls">
+            <label>
+                X coordinate
+                <input type="number" id="point-x"
+                       value="3" min="-10" max="10">
+            </label>
+
+            <label>
+                Y coordinate
+                <input type="number" id="point-y"
+                       value="2" min="-7" max="7">
+            </label>
+
+            <button id="plot-button" class="button button-primary">
+                Plot point
+            </button>
+        </div>
+
+        <p id="plot-result" aria-live="polite">
+            Point plotted at (3, 2)
+        </p>
+    </div>
+</section>
+        
 
         <section class="featured-section" id="featured">
             <div class="section-heading">

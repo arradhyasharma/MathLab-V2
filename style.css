@@ -1,22 +1,19 @@
 
-/* =========================================
-   MATHLAB — VISUAL FOUNDATION
-   ========================================= */
-
 :root {
-    --blue: #2563EB;
-    --blue-dark: #1D4ED8;
-    --ink: #111827;
-    --muted: #64748B;
-    --surface: #FFFFFF;
-    --background: #F8FAFC;
-    --border: #E2E8F0;
-    --soft-blue: #EFF6FF;
+    color-scheme: light;
 
-    --font-main: Arial, Helvetica, sans-serif;
+    --paper: #F1EDE2;
+    --paper-light: #F8F6EF;
+    --ink: #252720;
+    --muted: #77776D;
+    --line: #D4D0C4;
+    --accent: #C45A3C;
+    --olive: #78816A;
+    --grid: #DDD9CE;
 
-    --page-width: 1200px;
-    --page-padding: 6%;
+    --font: Arial, Helvetica, sans-serif;
+    --page-width: 1320px;
+    --gutter: 7%;
 }
 
 * {
@@ -27,14 +24,15 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 30px;
 }
 
 body {
-    font-family: var(--font-main);
-    background: var(--background);
+    background: var(--paper);
     color: var(--ink);
-    line-height: 1.6;
-    transition: background 0.25s ease, color 0.25s ease;
+    font-family: var(--font);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
 }
 
 a {
@@ -42,596 +40,889 @@ a {
     text-decoration: none;
 }
 
-button {
+button,
+input {
     font: inherit;
+}
+
+button {
     cursor: pointer;
 }
 
-.site-header,
-.hero,
-.featured-section,
-.laboratories-section,
-.challenges-section,
-.formulas-section,
-.site-footer {
-    padding-left: var(--page-padding);
-    padding-right: var(--page-padding);
+::selection {
+    background: var(--accent);
+    color: #FFFFFF;
 }
 
-/* =========================================
-   HEADER
-   ========================================= */
 
-.site-header {
-    min-height: 82px;
+/* ==========================================
+   PAGE WIDTH AND COMMON ELEMENTS
+   ========================================== */
+
+.masthead,
+.navigation,
+main,
+.footer {
+    width: 100%;
+}
+
+main {
+    max-width: var(--page-width);
+    margin: auto;
+}
+
+.opening,
+.experiment-section,
+.laboratories,
+.challenge-section,
+.formula-section {
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+}
+
+.section-index {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+
+/* ==========================================
+   MASTHEAD
+   ========================================== */
+
+.masthead {
+    min-height: 83px;
+    padding: 0 var(--gutter);
+
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 24px;
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
+    gap: 25px;
+
+    border-bottom: 1px solid var(--ink);
 }
 
-.logo {
-    font-size: 27px;
-    font-weight: 800;
-    letter-spacing: -1.5px;
-    white-space: nowrap;
+.brand {
+    font-size: 26px;
+    font-weight: 900;
+    letter-spacing: -1.8px;
 }
 
-.logo span {
-    color: var(--blue);
+.brand span {
+    color: var(--accent);
+    font-size: 11px;
+    vertical-align: top;
+    margin-left: 3px;
 }
 
-.main-nav {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-}
-
-.main-nav a {
+.masthead-caption {
     color: var(--muted);
-    font-size: 14px;
-    font-weight: 600;
-    transition: color 0.2s ease;
-}
-
-.main-nav a:hover {
-    color: var(--blue);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-align: center;
 }
 
 .theme-toggle {
-    border: 1px solid var(--border);
-    background: var(--surface);
+    border: 1px solid var(--line);
+    background: transparent;
     color: var(--ink);
-    padding: 9px 14px;
-    border-radius: 7px;
-    font-size: 13px;
-    font-weight: 600;
+
+    padding: 9px 13px;
+
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+
+    transition: background 0.2s, color 0.2s;
+}
+
+.theme-toggle:hover {
+    background: var(--ink);
+    color: var(--paper);
 }
 
 
-/* =========================================
-   MATHLAB — EXPERIMENTAL HERO
-   ========================================= */
+/* ==========================================
+   NAVIGATION
+   ========================================== */
 
-.hero {
-    min-height: 620px;
-    display: grid;
-    grid-template-columns: 0.9fr 1.1fr;
-    align-items: center;
-    gap: 55px;
-    max-width: 1600px;
-    margin: auto;
-    padding-top: 65px;
-    padding-bottom: 65px;
-}
+.navigation {
+    min-height: 49px;
+    padding: 0 var(--gutter);
 
-.hero h1 {
-    font-size: clamp(43px, 5vw, 68px);
-    line-height: 1.08;
-    letter-spacing: -3.5px;
-    font-weight: 800;
-    margin-bottom: 25px;
-}
-
-.hero h1 span {
-    color: var(--blue);
-}
-
-.hero-description {
-    max-width: 430px;
-    color: var(--muted);
-    font-size: 16px;
-    line-height: 1.8;
-}
-
-.hero-actions {
     display: flex;
-    gap: 13px;
-    margin-top: 30px;
+    align-items: center;
+    gap: 27px;
+
+    border-bottom: 1px solid var(--line);
+    overflow-x: auto;
 }
 
-/* =========================================
-   COORDINATE WORKSPACE
-   ========================================= */
-
-.plot-workspace {
-    min-width: 0;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 5px;
-    padding: 20px;
-    box-shadow: 0 12px 35px rgba(15, 23, 42, 0.06);
+.nav-label,
+.edition {
+    color: var(--muted);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    white-space: nowrap;
 }
 
-.plot-header {
+.navigation a {
+    color: var(--muted);
+    font-size: 11px;
+    white-space: nowrap;
+    transition: color 0.2s;
+}
+
+.navigation a:hover {
+    color: var(--accent);
+}
+
+.edition {
+    margin-left: auto;
+}
+
+
+/* ==========================================
+   OPENING / INTRODUCTION
+   ========================================== */
+
+.opening {
+    padding-top: 95px;
+    padding-bottom: 75px;
+}
+
+.opening-meta {
     display: flex;
     justify-content: space-between;
-    gap: 10px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--border);
+    gap: 20px;
+
     color: var(--muted);
     font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.3px;
+}
+
+.opening h1 {
+    margin-top: 52px;
+    margin-bottom: 38px;
+
+    font-size: clamp(55px, 8.3vw, 112px);
+    line-height: 0.98;
+    letter-spacing: -7px;
     font-weight: 800;
-    letter-spacing: 1.2px;
 }
 
-.plot-canvas {
-    width: 100%;
-    margin: 15px 0;
-    background: var(--surface);
-    overflow: hidden;
+.opening h1 em {
+    color: var(--accent);
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 400;
+    letter-spacing: -5px;
 }
 
-.plot-canvas svg {
+.opening-bottom {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 35px;
+
+    padding-top: 23px;
+    border-top: 1px solid var(--ink);
+}
+
+.opening-bottom p {
+    max-width: 440px;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+.text-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--accent);
+
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+
+    white-space: nowrap;
+    transition: gap 0.2s;
+}
+
+.text-action:hover {
+    gap: 27px;
+}
+
+
+/* ==========================================
+   EXPERIMENT SECTION
+   ========================================== */
+
+.experiment-section {
+    padding-top: 65px;
+    padding-bottom: 85px;
+
+    background: var(--paper-light);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+
+.experiment-heading {
+    display: grid;
+    grid-template-columns: 1fr 0.65fr;
+    align-items: end;
+    gap: 40px;
+
+    padding-top: 38px;
+    padding-bottom: 35px;
+}
+
+.small-label {
+    margin-bottom: 13px;
+
+    color: var(--accent);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.experiment-heading h2,
+.section-title-row h2 {
+    font-size: clamp(30px, 4vw, 48px);
+    line-height: 1.08;
+    letter-spacing: -2px;
+}
+
+.experiment-description {
+    max-width: 360px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+
+/* ==========================================
+   GRAPH WORKSPACE
+   ========================================== */
+
+.experiment-layout {
+    display: grid;
+    grid-template-columns: 1.5fr 0.65fr;
+    border: 1px solid var(--line);
+}
+
+.graph-area {
+    min-width: 0;
+    padding: 20px;
+    border-right: 1px solid var(--line);
+}
+
+.graph-area svg {
     display: block;
     width: 100%;
     height: auto;
+    overflow: visible;
 }
 
-.plot-controls {
-    display: flex;
-    align-items: end;
-    flex-wrap: wrap;
-    gap: 12px;
-    padding-top: 15px;
-    border-top: 1px solid var(--border);
+.graph-axis {
+    stroke: var(--ink);
+    stroke-width: 1.5;
 }
 
-.plot-controls label {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    color: var(--muted);
-    font-size: 11px;
+.axis-arrow {
+    fill: var(--ink);
+}
+
+.axis-label {
+    fill: var(--ink);
+    font-size: 12px;
     font-weight: 700;
 }
 
-.plot-controls input {
-    width: 85px;
-    height: 39px;
-    padding: 8px;
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    background: var(--background);
-    color: var(--ink);
-    font-size: 14px;
+.graph-numbers {
+    fill: var(--muted);
+    font-size: 10px;
 }
 
-.plot-controls button {
-    border: none;
-    min-height: 39px;
+.point-guide {
+    stroke: var(--olive);
+    stroke-width: 1.4;
+    stroke-dasharray: 4 4;
 }
 
-#plot-result {
-    margin-top: 14px;
+.plotted-point {
+    fill: var(--accent);
+    stroke: var(--paper-light);
+    stroke-width: 2;
+}
+
+.point-label {
+    fill: var(--accent);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.graph-caption {
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
+
+    color: var(--muted);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+}
+
+
+/* ==========================================
+   EXPERIMENT CONTROLS
+   ========================================== */
+
+.experiment-controls {
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.experiment-controls h3 {
+    margin-bottom: 8px;
+    font-size: 22px;
+    letter-spacing: -0.8px;
+}
+
+.control-description {
+    margin-bottom: 28px;
     color: var(--muted);
     font-size: 12px;
+    line-height: 1.8;
 }
 
-/* =========================================
-   HERO RESPONSIVENESS
-   ========================================= */
+.experiment-controls label {
+    margin-bottom: 7px;
 
-@media (max-width: 900px) {
-    .hero {
-        grid-template-columns: 1fr;
-        gap: 35px;
-        min-height: auto;
-    }
-
-    .hero-content {
-        max-width: 650px;
-    }
-
-    .plot-workspace {
-        width: 100%;
-    }
-}
-
-@media (max-width: 650px) {
-    .hero {
-        padding-top: 50px;
-        padding-bottom: 50px;
-    }
-
-    .hero h1 {
-        font-size: 46px;
-        letter-spacing: -2px;
-    }
-
-    .plot-workspace {
-        padding: 13px;
-    }
-
-    .plot-controls {
-        align-items: stretch;
-    }
-
-    .plot-controls label {
-        flex: 1;
-    }
-
-    .plot-controls input {
-        width: 100%;
-    }
-}
-
-
-/* =========================================
-   SECTION HEADINGS
-   ========================================= */
-
-.section-heading {
-    max-width: 680px;
-    margin-bottom: 38px;
-}
-
-.section-heading h2 {
-    font-size: clamp(30px, 4vw, 45px);
-    line-height: 1.15;
-    letter-spacing: -1.8px;
-    margin-bottom: 13px;
-}
-
-.section-heading > p:last-child {
     color: var(--muted);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.experiment-controls input {
+    width: 100%;
+    height: 43px;
+    margin-bottom: 20px;
+    padding: 0 12px;
+
+    background: transparent;
+    color: var(--ink);
+
+    border: 1px solid var(--line);
+    border-radius: 0;
+    outline: none;
+
     font-size: 15px;
 }
 
-/* =========================================
-   FEATURED EXPERIMENT
-   ========================================= */
-
-.featured-section {
-    padding-top: 90px;
-    padding-bottom: 95px;
-    background: var(--surface);
+.experiment-controls input:focus {
+    border-color: var(--accent);
 }
 
-.featured-experiment {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-    max-width: var(--page-width);
-    margin: auto;
-    padding: 35px;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-}
+.plot-button {
+    min-height: 44px;
+    border: 0;
+    padding: 10px 14px;
 
-.experiment-info {
-    align-self: center;
-}
+    background: var(--ink);
+    color: var(--paper);
 
-.experiment-info h3 {
-    font-size: 29px;
-    line-height: 1.2;
-    letter-spacing: -1px;
-    margin-bottom: 15px;
-}
-
-.experiment-info > p:not(.eyebrow) {
-    color: var(--muted);
-    max-width: 440px;
-    margin-bottom: 22px;
-}
-
-.text-link,
-.card-link {
-    color: var(--blue);
-    font-size: 14px;
+    font-size: 11px;
     font-weight: 700;
+    letter-spacing: 0.6px;
+
+    transition: background 0.2s;
 }
 
-.experiment-preview {
-    min-height: 240px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--soft-blue);
-    border-radius: 9px;
+.plot-button:hover {
+    background: var(--accent);
 }
 
-.coordinate-placeholder {
-    font-size: 34px;
+.result-area {
+    margin-top: 25px;
+    padding-top: 17px;
+    border-top: 1px solid var(--line);
+}
+
+.result-area span {
+    color: var(--muted);
+    font-size: 9px;
     font-weight: 800;
-    color: var(--blue);
-    letter-spacing: 5px;
+    letter-spacing: 1px;
 }
 
-/* =========================================
-   LABORATORIES
-   ========================================= */
-
-.laboratories-section {
-    padding-top: 100px;
-    padding-bottom: 105px;
-}
-
-.laboratory-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-    max-width: var(--page-width);
-    margin: auto;
-}
-
-.lab-card {
-    min-height: 245px;
-    position: relative;
-    padding: 25px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 9px;
-    transition: border-color 0.2s ease, transform 0.2s ease;
-}
-
-.lab-card:hover {
-    border-color: var(--blue);
-    transform: translateY(-4px);
-}
-
-.lab-number {
-    position: absolute;
-    top: 23px;
-    right: 23px;
-    color: var(--muted);
-    font-size: 12px;
+.result-area p {
+    margin-top: 7px;
+    color: var(--accent);
+    font-size: 18px;
     font-weight: 700;
 }
 
-.lab-symbol {
-    width: 54px;
-    height: 54px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 22px;
-    background: var(--soft-blue);
-    color: var(--blue);
-    border-radius: 8px;
-    font-size: 25px;
-    font-weight: 800;
-}
 
-.lab-card h3 {
-    font-size: 20px;
-    letter-spacing: -0.5px;
-    margin-bottom: 8px;
-}
+/* ==========================================
+   LABORATORY INDEX
+   ========================================== */
 
-.lab-card p {
-    min-height: 48px;
-    color: var(--muted);
-    font-size: 13px;
-    margin-bottom: 17px;
-}
-
-.card-link {
-    font-size: 12px;
-}
-
-/* =========================================
-   CHALLENGES
-   ========================================= */
-
-.challenges-section {
-    padding-top: 90px;
-    padding-bottom: 90px;
-    background: var(--surface);
-}
-
-.challenge-link {
-    max-width: var(--page-width);
-    min-height: 105px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    padding: 25px 30px;
-    background: var(--blue);
-    color: white;
-    border-radius: 9px;
-    font-size: 19px;
-    font-weight: 700;
-    transition: background 0.2s ease;
-}
-
-.challenge-link:hover {
-    background: var(--blue-dark);
-}
-
-.challenge-link span:last-child {
-    font-size: 28px;
-}
-
-/* =========================================
-   FORMULA SECTION
-   ========================================= */
-
-.formulas-section {
+.laboratories {
     padding-top: 90px;
     padding-bottom: 100px;
 }
 
-/* =========================================
-   FOOTER
-   ========================================= */
-
-.site-footer {
-    min-height: 145px;
+.section-title-row {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: space-between;
-    gap: 20px;
-    flex-wrap: wrap;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    background: var(--ink);
-    color: white;
+    gap: 25px;
+
+    padding-top: 35px;
+    padding-bottom: 35px;
 }
 
-.site-footer .logo span {
-    color: #60A5FA;
-}
-
-.site-footer p {
-    color: #CBD5E1;
+.section-title-row p {
+    max-width: 240px;
+    color: var(--muted);
     font-size: 12px;
-    letter-spacing: 0.5px;
+    line-height: 1.8;
 }
 
-/* =========================================
+.lab-list {
+    border-top: 1px solid var(--ink);
+}
+
+.lab-entry {
+    min-height: 94px;
+    display: grid;
+    grid-template-columns: 65px 1.1fr 1fr 35px;
+    align-items: center;
+    gap: 20px;
+
+    border-bottom: 1px solid var(--line);
+    transition: padding 0.2s, background 0.2s;
+}
+
+.lab-entry:hover {
+    padding-left: 12px;
+    padding-right: 12px;
+    background: var(--paper-light);
+}
+
+.lab-id {
+    color: var(--accent);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 19px;
+}
+
+.lab-name {
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: -0.6px;
+}
+
+.lab-detail {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.lab-arrow {
+    color: var(--accent);
+    font-size: 21px;
+    text-align: right;
+}
+
+
+/* ==========================================
+   CHALLENGE SECTION
+   ========================================== */
+
+.challenge-section {
+    padding-top: 65px;
+    padding-bottom: 85px;
+
+    background: var(--ink);
+    color: var(--paper);
+}
+
+.challenge-section .section-index {
+    border-color: #55564E;
+    color: #B8B8A9;
+}
+
+.challenge-content {
+    padding-top: 55px;
+}
+
+.challenge-content h2 {
+    font-size: clamp(43px, 6vw, 75px);
+    line-height: 1.03;
+    letter-spacing: -4px;
+}
+
+.challenge-content p {
+    max-width: 390px;
+    margin-top: 23px;
+    margin-bottom: 30px;
+
+    color: #B8B8A9;
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+.challenge-section .text-action {
+    color: #D78A6F;
+    border-color: #D78A6F;
+}
+
+
+/* ==========================================
+   FORMULA REGISTER
+   ========================================== */
+
+.formula-section {
+    padding-top: 75px;
+    padding-bottom: 90px;
+}
+
+.formula-content {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 30px;
+
+    padding-top: 45px;
+}
+
+.formula-content h2 {
+    font-size: clamp(34px, 4vw, 49px);
+    line-height: 1.1;
+    letter-spacing: -2px;
+}
+
+.formula-content p {
+    max-width: 390px;
+    margin-top: 16px;
+
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+
+/* ==========================================
+   FOOTER
+   ========================================== */
+
+.footer {
+    min-height: 150px;
+    padding: 30px var(--gutter);
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 14px;
+
+    background: var(--ink);
+    color: var(--paper);
+}
+
+.footer-brand {
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: -1.5px;
+}
+
+.footer p,
+.footer > span {
+    color: #B8B8A9;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.footer p:nth-of-type(2),
+.footer > span {
+    text-align: right;
+}
+
+
+/* ==========================================
    DARK THEME
-   ========================================= */
+   ========================================== */
 
 body.dark-theme {
-    --ink: #F1F5F9;
-    --muted: #94A3B8;
-    --surface: #111827;
-    --background: #0B1120;
-    --border: #293548;
-    --soft-blue: #172B4D;
+    color-scheme: dark;
+
+    --paper: #20211D;
+    --paper-light: #292A24;
+    --ink: #E9E5D9;
+    --muted: #AAA99C;
+    --line: #494A40;
+    --accent: #DC8060;
+    --olive: #A5AD8B;
+    --grid: #42443B;
 }
 
-body.dark-theme .site-header {
-    background: var(--surface);
+body.dark-theme .footer {
+    background: #151611;
 }
 
-body.dark-theme .site-footer {
-    background: #070B14;
+body.dark-theme .challenge-section {
+    background: #151611;
 }
 
-body.dark-theme .button-secondary {
-    color: var(--ink);
+body.dark-theme .experiment-controls input {
+    background: #20211D;
 }
 
-body.dark-theme .math-visual-placeholder {
-    background-color: var(--soft-blue);
+body.dark-theme .graph-area svg rect {
+    fill: var(--paper-light);
 }
 
-/* =========================================
-   RESPONSIVE DESIGN
-   ========================================= */
+body.dark-theme .graph-area svg pattern path {
+    stroke: var(--line);
+}
+
+body.dark-theme .plotted-point {
+    stroke: var(--paper-light);
+}
+
+
+/* ==========================================
+   TABLET
+   ========================================== */
 
 @media (max-width: 900px) {
-    .main-nav {
-        gap: 15px;
+
+    :root {
+        --gutter: 5%;
     }
 
-    .main-nav a {
-        font-size: 12px;
+    .masthead-caption {
+        font-size: 8px;
     }
 
-    .hero {
-        grid-template-columns: 1fr 0.8fr;
-        gap: 25px;
+    .navigation {
+        gap: 19px;
     }
 
-    .hero h1 {
+    .opening h1 {
+        letter-spacing: -4px;
+    }
+
+    .experiment-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .graph-area {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+    }
+
+    .experiment-controls {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px 18px;
+    }
+
+    .experiment-controls .small-label,
+    .experiment-controls h3,
+    .experiment-controls .control-description,
+    .experiment-controls .plot-button,
+    .experiment-controls .result-area {
+        grid-column: 1 / -1;
+    }
+
+    .experiment-controls input {
+        margin-bottom: 5px;
+    }
+}
+
+
+/* ==========================================
+   MOBILE
+   ========================================== */
+
+@media (max-width: 600px) {
+
+    :root {
+        --gutter: 6%;
+    }
+
+    .masthead {
+        min-height: 72px;
+        gap: 10px;
+    }
+
+    .brand {
+        font-size: 22px;
+    }
+
+    .masthead-caption {
+        display: none;
+    }
+
+    .theme-toggle {
+        padding: 8px 9px;
+        font-size: 10px;
+    }
+
+    .navigation {
+        min-height: 45px;
+        gap: 17px;
+    }
+
+    .edition {
+        display: none;
+    }
+
+    .opening {
+        padding-top: 65px;
+        padding-bottom: 55px;
+    }
+
+    .opening-meta {
+        font-size: 8px;
+        letter-spacing: 0.7px;
+    }
+
+    .opening h1 {
+        margin-top: 40px;
+        margin-bottom: 30px;
+        font-size: clamp(47px, 12vw, 68px);
+        letter-spacing: -3px;
+    }
+
+    .opening h1 em {
         letter-spacing: -2px;
     }
 
-    .laboratory-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 650px) {
-    :root {
-        --page-padding: 6%;
+    .opening-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 25px;
     }
 
-    .site-header {
-        min-height: 70px;
-        flex-wrap: wrap;
-        padding-top: 12px;
-        padding-bottom: 12px;
+    .opening-bottom p {
+        font-size: 13px;
     }
 
-    .logo {
-        font-size: 24px;
+    .experiment-section {
+        padding-top: 45px;
+        padding-bottom: 55px;
     }
 
-    .main-nav {
-        order: 3;
-        width: 100%;
-        overflow-x: auto;
-        padding: 9px 0 4px;
-        gap: 22px;
+    .section-index {
+        font-size: 8px;
+        letter-spacing: 0.8px;
     }
 
-    .main-nav a {
-        white-space: nowrap;
-    }
-
-    .hero {
+    .experiment-heading {
         grid-template-columns: 1fr;
-        padding-top: 65px;
-        padding-bottom: 60px;
+        gap: 16px;
+        padding-top: 28px;
     }
 
-    .hero h1 {
-        font-size: 48px;
+    .experiment-heading h2,
+    .section-title-row h2 {
+        font-size: 35px;
     }
 
-    .hero-description {
-        font-size: 15px;
+    .graph-area {
+        padding: 9px;
     }
 
-    .hero-visual {
-        min-height: 290px;
+    .experiment-controls {
+        padding: 22px 17px;
+        display: flex;
     }
 
-    .math-visual-placeholder {
-        width: 270px;
+    .experiment-controls input {
+        margin-bottom: 15px;
     }
 
-    .featured-section,
-    .laboratories-section,
-    .challenges-section,
-    .formulas-section {
-        padding-top: 65px;
+    .laboratories {
+        padding-top: 60px;
         padding-bottom: 65px;
     }
 
-    .featured-experiment {
-        grid-template-columns: 1fr;
-        padding: 22px;
-    }
-
-    .laboratory-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .lab-card {
-        min-height: 220px;
-    }
-
-    .site-footer {
+    .section-title-row {
         align-items: flex-start;
         flex-direction: column;
+        gap: 12px;
+        padding-top: 27px;
+        padding-bottom: 27px;
     }
-      }
+
+    .lab-entry {
+        min-height: 88px;
+        grid-template-columns: 29px 1fr 22px;
+        gap: 10px;
+    }
+
+    .lab-name {
+        font-size: 16px;
+    }
+
+    .lab-detail {
+        display: none;
+    }
+
+    .challenge-section {
+        padding-top: 45px;
+        padding-bottom: 60px;
+    }
+
+    .challenge-content {
+        padding-top: 40px;
+    }
+
+    .challenge-content h2 {
+        font-size: 49px;
+        letter-spacing: -2.5px;
+    }
+
+    .formula-section {
+        padding-top: 55px;
+        padding-bottom: 65px;
+    }
+
+    .formula-content {
+        align-items: flex-start;
+        flex-direction: column;
+        padding-top: 32px;
+    }
+
+    .formula-content h2 {
+        font-size: 37px;
+    }
+
+    .footer {
+        grid-template-columns: 1fr;
+        gap: 13px;
+    }
+
+    .footer p:nth-of-type(2),
+    .footer > span {
+        text-align: left;
+    }
+}
